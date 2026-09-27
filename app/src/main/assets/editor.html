@@ -2,521 +2,560 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Editor Foto Tampilator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tampilator Editor Foto</title>
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #f0f0f0;
-    color: #222;
-    padding-bottom: 90px;
-  }
-  header {
-    background: #2c3e50;
-    color: #fff;
-    padding: 16px;
-    text-align: center;
-  }
-  header h1 { margin: 0; font-size: 20px; }
-  header .sub { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-
-  #barIp {
-    display: flex;
-    gap: 8px;
-    padding: 10px 12px;
-    background: #34495e;
-  }
-  #barIp input {
-    flex: 1;
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-    font-size: 14px;
-  }
-  #barIp button {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    background: #1abc9c;
-    color: #fff;
-    font-size: 14px;
-  }
-
-  #status {
-    padding: 8px 14px;
-    font-size: 13px;
-    text-align: center;
-    color: #555;
-  }
-
-  #daftar {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .kartu {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-    overflow: hidden;
-    display: flex;
-  }
-  .kartu .thumb-wrap {
-    width: 160px;
-    min-width: 160px;
-    aspect-ratio: 16/9;
-    background: #ddd;
-    position: relative;
-  }
-  .kartu .thumb-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .kartu .thumb-wrap .noFoto {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: #888;
-    text-align: center;
-    padding: 4px;
-  }
-  .kartu .isi {
-    flex: 1;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-  }
-  .kartu .isi input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-  }
-  .kartu .baris-slider {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: #555;
-  }
-  .kartu .baris-slider input[type="range"] {
-    flex: 1;
-  }
-  .kartu .aksi {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .kartu .aksi button {
-    flex: 1;
-    padding: 7px 4px;
-    font-size: 12px;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    min-width: 60px;
-  }
-  .btn-ganti { background: #2980b9; }
-  .btn-naik, .btn-turun { background: #7f8c8d; }
-  .btn-hapus { background: #c0392b; }
-
-  #tombolTambahWrap {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: #fff;
-    padding: 10px 12px;
-    box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
-    display: flex;
-    gap: 10px;
-  }
-  #tombolTambahWrap button {
-    flex: 1;
-    padding: 14px;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: bold;
-  }
-  #btnTambah { background: #27ae60; }
-  #btnSimpan { background: #e67e22; }
-  #btnTambah:disabled, #btnSimpan:disabled { background: #bdc3c7; }
-
-  .kosong {
-    text-align: center;
-    color: #888;
-    padding: 30px 10px;
-    font-size: 14px;
-  }
-
-  input[type="file"] { display: none; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+body { background: #d9dde3; color: #000; padding: 15px; padding-bottom: 100px; font-size: 18px; }
+.header { text-align: center; margin-bottom: 15px; }
+.header h1 { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+.header .ip-info { font-size: 14px; color: #555; }
+.tombol-utama { display: flex; gap: 12px; margin-bottom: 15px; }
+.btn { flex: 1; padding: 22px 15px; font-size: 20px; font-weight: bold; color: #fff; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.2); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { background: #999 !important; cursor: not-allowed; opacity: 0.5; }
+.btn-ambil { background: #1a5c99; }
+.btn-kirim { background: #0d8033; }
+.btn-merah { background: #cc3333; }
+.btn-oranye { background: #d97000; }
+.status { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 16px; font-weight: bold; min-height: 30px; text-align: center; border: 1px solid #aaa; }
+.status.hijau { color: #0d8033; }
+.status.merah { color: #cc3333; }
+.status.biru { color: #1a5c99; }
+.label { font-size: 20px; font-weight: bold; margin: 20px 0 10px 0; }
+.tombol-tambah { display: none; gap: 10px; margin-bottom: 15px; }
+.tombol-tambah button { flex: 1; padding: 18px 10px; font-size: 16px; font-weight: bold; color: #fff; border: none; border-radius: 8px; cursor: pointer; background: #0d8033; }
+.tombol-tambah button:disabled { background: #ccc; cursor: not-allowed; }
+.daftar-item { display: flex; flex-direction: column; gap: 12px; }
+.item-card { background: #fff; border: 1px solid #aaa; border-radius: 10px; padding: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 12px; }
+.item-card .thumb { width: 120px; min-width: 120px; aspect-ratio: 16/9; background: #ddd; border-radius: 6px; overflow: hidden; position: relative; }
+.item-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.item-card .thumb .noFoto { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888; text-align: center; padding: 4px; }
+.item-card .info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.item-card .nomor { font-size: 13px; color: #666; margin-bottom: 3px; }
+.item-card .caption-preview { font-size: 16px; font-weight: bold; margin-bottom: 5px; word-wrap: break-word; }
+.item-card .caption-preview.kosong { color: #999; font-weight: normal; font-style: italic; }
+.item-card .subjudul { font-size: 13px; color: #888; }
+.item-aksi { display: flex; gap: 8px; margin-top: 8px; }
+.item-aksi .btn-kecil { flex: 1; padding: 10px; font-size: 13px; }
+.btn-kecil { border: none; border-radius: 6px; padding: 8px 12px; font-size: 14px; font-weight: bold; cursor: pointer; color: #fff; }
+.btn-kecil:active { transform: scale(0.96); }
+.btn-kecil-naik { background: #1a5c99; }
+.btn-kecil-turun { background: #1a5c99; }
+.btn-kecil-hapus { background: #cc3333; }
+.btn-kecil-buka { background: #0d8033; }
+.btn-kecil:disabled { background: #ccc; cursor: not-allowed; }
+.kosong { text-align: center; color: #777; padding: 30px 10px; }
+.form-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 100; overflow-y: auto; padding: 15px; }
+.form-overlay.aktif { display: block; }
+.form-kotak { background: #fff; border-radius: 15px; padding: 20px; max-width: 500px; margin: 10px auto; }
+.form-kotak h2 { font-size: 22px; margin-bottom: 20px; text-align: center; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+.form-group input, .form-group textarea { width: 100%; padding: 14px; font-size: 18px; border: 2px solid #aaa; border-radius: 8px; font-family: inherit; }
+.form-group input:focus { outline: none; border-color: #1a5c99; }
+.form-tombol { display: flex; gap: 12px; margin-top: 20px; }
+.form-tombol .btn { flex: 1; padding: 20px 10px; font-size: 18px; }
+.preview-wrap { position: relative; width: 100%; background: #000; border-radius: 8px; overflow: hidden; margin-bottom: 8px; min-height: 140px; display: flex; align-items: center; justify-content: center; }
+.preview-wrap img { width: 100%; display: block; }
+.preview-wrap .noFotoBesar { color: #aaa; font-size: 14px; padding: 20px; text-align: center; }
+.preview-caption-box { position: absolute; left: 6%; right: 6%; transform: translateY(-50%); background: rgba(0,0,0,0.95); color: #fff; text-align: center; padding: 8px 10px; font-weight: bold; border-radius: 5px; font-size: 14px; word-wrap: break-word; pointer-events: none; }
+.preview-hint { font-size: 12px; color: #888; text-align: center; margin-bottom: 15px; }
+.slider-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555; }
+.slider-row input[type="range"] { flex: 1; }
+.btn-ganti-foto { width: 100%; padding: 14px; font-size: 15px; font-weight: bold; color: #fff; background: #1a5c99; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 18px; }
+input[type="file"] { display: none; }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>EDITOR FOTO</h1>
-  <div class="sub">Foto Album Kegiatan Masjid</div>
-</header>
-
-<div id="barIp">
-  <input type="text" id="inputIp" placeholder="IP Tampilator, mis. 192.168.1.1">
-  <button id="btnSambung">Sambung</button>
+<div class="header">
+    <h1>TAMPILATOR EDITOR FOTO</h1>
+    <div class="ip-info" id="info-ip">Mendeteksi IP...</div>
 </div>
 
-<div id="status">Menghubungkan ke Tampilator...</div>
-
-<div id="daftar"></div>
-
-<input type="file" id="inputFile" accept="image/*">
-
-<div id="tombolTambahWrap">
-  <button id="btnTambah">+ Tambah Foto</button>
-  <button id="btnSimpan">Simpan</button>
+<div class="tombol-utama">
+    <button class="btn btn-ambil" id="btn-ambil" onclick="ambilData()">AMBIL DATA</button>
+    <button class="btn btn-kirim" id="btn-kirim" onclick="kirimData()" disabled>KIRIM DATA</button>
 </div>
+
+<div class="status" id="status">Tekan AMBIL DATA untuk mulai</div>
+
+<div class="tombol-tambah" id="tombol-tambah">
+    <button id="btn-tambah-foto" onclick="tambahFoto()">+ TAMBAH FOTO</button>
+</div>
+
+<div id="area-daftar" style="display:none;">
+    <div class="label">DAFTAR FOTO TAMPILATOR</div>
+    <div class="daftar-item" id="daftar-foto"></div>
+</div>
+
+<div class="form-overlay" id="form-overlay">
+    <div class="form-kotak">
+        <h2 id="form-judul">EDIT FOTO</h2>
+
+        <div class="preview-wrap" id="preview-wrap">
+            <div class="noFotoBesar" id="preview-kosong">Belum ada foto - tekan "Ganti Foto" di bawah</div>
+            <img id="preview-img" style="display:none;">
+            <div class="preview-caption-box" id="preview-caption-box" style="display:none;"></div>
+        </div>
+        <div class="preview-hint">Pratinjau posisi caption (perkiraan)</div>
+
+        <button class="btn-ganti-foto" onclick="document.getElementById('input-file').click()">GANTI FOTO</button>
+
+        <div class="form-group">
+            <label>Caption</label>
+            <input type="text" id="f-caption" placeholder="Caption foto (boleh kosong)">
+        </div>
+
+        <div class="form-group">
+            <label>Posisi Caption (atas &harr; bawah)</label>
+            <div class="slider-row">
+                <span>Atas</span>
+                <input type="range" id="f-posisi" min="0" max="100" value="90">
+                <span>Bawah</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Durasi Tampil (detik) - kosongkan utk default</label>
+            <input type="number" id="f-durasi" min="1" max="120" placeholder="8 (default)">
+        </div>
+
+        <div class="form-tombol">
+            <button class="btn btn-kirim" onclick="simpanForm()">SIMPAN</button>
+            <button class="btn btn-oranye" id="btn-tutup" onclick="tutupForm()">TUTUP</button>
+        </div>
+    </div>
+</div>
+
+<input type="file" id="input-file" accept="image/*">
 
 <script>
-// ==================== KONFIGURASI ====================
-var PORT = 8080;
-var LEBAR_MAKS_UTAMA = 1280;   // lebar maksimal foto utama (px), proporsional
-var THUMB_W = 320;             // ukuran thumbnail preview (px)
-var THUMB_H = 180;             // rasio 16:9 dipaksa (crop tengah)
+var SERVER_PORT = 8080;
+var serverIP = "192.168.43.1";
+var LEBAR_MAKS_UTAMA = 1280;
+var THUMB_W = 320;
+var THUMB_H = 180;
 var MAKS_FOTO = 30;
 var KUALITAS_JPEG = 0.8;
 
-var baseUrl = "";              // http://<ip>:8080
-var daftarFoto = [];           // { id, caption, posisiY, thumbUrl, mainBlob, thumbBlob, isBaru }
-var sedangEditId = null;       // id yang sedang menunggu hasil pilih foto (null = tambah baru)
+var baseUrl = "";
+var daftarFoto = null;   // null = belum Ambil Data; array = { id, caption, posisiY, durasi, previewUrl, mainBlob, thumbBlob }
+var editIndex = -1;
+var modeTambah = false;
+
+// ==================== DETEKSI IP TV BOX (sama pola dgn Editor Text - diam-diam, tanpa kolom manual) ====================
+function getGatewayIP() {
+    try {
+        if (window.AndroidBridge && typeof window.AndroidBridge.getTvBoxIp === "function") {
+            var ip = window.AndroidBridge.getTvBoxIp();
+            if (ip && ip.length > 0) return ip;
+        }
+    } catch (e) {}
+    return null;
+}
+
+function deteksiIP() {
+    var gateway = getGatewayIP();
+    var el = document.getElementById("info-ip");
+    if (gateway) {
+        serverIP = gateway;
+        el.textContent = "Tersambung ke TV Box: " + serverIP + ":" + SERVER_PORT;
+        el.style.color = "#0d8033";
+        el.style.fontWeight = "bold";
+    } else {
+        el.textContent = "IP default: " + serverIP + ":" + SERVER_PORT;
+        el.style.color = "#cc3333";
+    }
+}
+
+function setStatus(pesan, warna) {
+    var el = document.getElementById("status");
+    el.textContent = pesan;
+    el.className = "status " + (warna || "");
+}
 
 // ==================== UTIL ====================
-function elStatus(teks) {
-  document.getElementById("status").textContent = teks;
-}
-
 function idBerikutnya() {
-  for (var i = 1; i <= MAKS_FOTO; i++) {
-    var dipakai = daftarFoto.some(function (f) { return f.id === i; });
-    if (!dipakai) return i;
-  }
-  return null; // penuh
+    for (var i = 1; i <= MAKS_FOTO; i++) {
+        var dipakai = daftarFoto.some(function (f) { return f.id === i; });
+        if (!dipakai) return i;
+    }
+    return null;
 }
 
-// resize proporsional (lebar maks LEBAR_MAKS_UTAMA), hasil Blob JPEG
+function thumbUrlUntuk(foto) {
+    if (foto.previewUrl) return foto.previewUrl;
+    if (baseUrl) return baseUrl + "/Get_Photo_Thumb?id=" + foto.id + "&t=" + (foto._cacheBust || 0);
+    return null;
+}
+
 function resizeUtama(file) {
-  return new Promise(function (resolve, reject) {
-    var img = new Image();
-    img.onload = function () {
-      var w = img.width, h = img.height;
-      if (w > LEBAR_MAKS_UTAMA) {
-        h = Math.round(h * (LEBAR_MAKS_UTAMA / w));
-        w = LEBAR_MAKS_UTAMA;
-      }
-      var canvas = document.createElement("canvas");
-      canvas.width = w; canvas.height = h;
-      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-      canvas.toBlob(function (blob) { resolve(blob); }, "image/jpeg", KUALITAS_JPEG);
-    };
-    img.onerror = reject;
-    img.src = URL.createObjectURL(file);
-  });
-}
-
-// thumbnail 16:9 dipaksa, crop dari TENGAH foto asli (bukan letterbox)
-function buatThumbnail(file) {
-  return new Promise(function (resolve, reject) {
-    var img = new Image();
-    img.onload = function () {
-      var rasioTarget = THUMB_W / THUMB_H;
-      var rasioAsli = img.width / img.height;
-      var sx, sy, sw, sh;
-      if (rasioAsli > rasioTarget) {
-        sh = img.height;
-        sw = sh * rasioTarget;
-        sx = (img.width - sw) / 2;
-        sy = 0;
-      } else {
-        sw = img.width;
-        sh = sw / rasioTarget;
-        sx = 0;
-        sy = (img.height - sh) / 2;
-      }
-      var canvas = document.createElement("canvas");
-      canvas.width = THUMB_W; canvas.height = THUMB_H;
-      canvas.getContext("2d").drawImage(img, sx, sy, sw, sh, 0, 0, THUMB_W, THUMB_H);
-      canvas.toBlob(function (blob) { resolve(blob); }, "image/jpeg", KUALITAS_JPEG);
-    };
-    img.onerror = reject;
-    img.src = URL.createObjectURL(file);
-  });
-}
-
-// ==================== RENDER DAFTAR ====================
-function render() {
-  var wadah = document.getElementById("daftar");
-  wadah.innerHTML = "";
-
-  if (daftarFoto.length === 0) {
-    wadah.innerHTML = '<div class="kosong">Belum ada foto. Tekan "+ Tambah Foto" di bawah.</div>';
-  }
-
-  daftarFoto.forEach(function (foto, idx) {
-    var kartu = document.createElement("div");
-    kartu.className = "kartu";
-
-    var thumbSrc = foto.previewUrl
-      ? foto.previewUrl
-      : (baseUrl ? baseUrl + "/Get_Photo_Thumb?id=" + foto.id + "&t=" + Date.now() : "");
-
-    var thumbHtml = thumbSrc
-      ? '<img src="' + thumbSrc + '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
-        '<div class="noFoto" style="display:none">Foto belum termuat</div>'
-      : '<div class="noFoto">Belum ada foto</div>';
-
-    kartu.innerHTML =
-      '<div class="thumb-wrap">' + thumbHtml + '</div>' +
-      '<div class="isi">' +
-      '  <input type="text" class="inputCaption" placeholder="Caption foto ke-' + foto.id + '" value="' + (foto.caption || "").replace(/"/g, "&quot;") + '">' +
-      '  <div class="baris-slider">' +
-      '    <span>Atas</span>' +
-      '    <input type="range" class="sliderPosisi" min="0" max="100" value="' + foto.posisiY + '">' +
-      '    <span>Bawah</span>' +
-      '  </div>' +
-      '  <div class="aksi">' +
-      '    <button class="btn-naik">▲ Naik</button>' +
-      '    <button class="btn-turun">▼ Turun</button>' +
-      '    <button class="btn-ganti">Ganti Foto</button>' +
-      '    <button class="btn-hapus">Hapus</button>' +
-      '  </div>' +
-      '</div>';
-
-    kartu.querySelector(".inputCaption").addEventListener("input", function (e) {
-      foto.caption = e.target.value;
-    });
-    kartu.querySelector(".sliderPosisi").addEventListener("input", function (e) {
-      foto.posisiY = parseInt(e.target.value, 10);
-    });
-    kartu.querySelector(".btn-hapus").addEventListener("click", function () {
-      if (confirm("Hapus foto ke-" + foto.id + "?")) {
-        daftarFoto.splice(idx, 1);
-        render();
-      }
-    });
-    kartu.querySelector(".btn-naik").addEventListener("click", function () {
-      if (idx > 0) {
-        var tmp = daftarFoto[idx - 1];
-        daftarFoto[idx - 1] = daftarFoto[idx];
-        daftarFoto[idx] = tmp;
-        render();
-      }
-    });
-    kartu.querySelector(".btn-turun").addEventListener("click", function () {
-      if (idx < daftarFoto.length - 1) {
-        var tmp = daftarFoto[idx + 1];
-        daftarFoto[idx + 1] = daftarFoto[idx];
-        daftarFoto[idx] = tmp;
-        render();
-      }
-    });
-    kartu.querySelector(".btn-ganti").addEventListener("click", function () {
-      sedangEditId = foto.id;
-      document.getElementById("inputFile").click();
-    });
-
-    wadah.appendChild(kartu);
-  });
-
-  document.getElementById("btnTambah").disabled = daftarFoto.length >= MAKS_FOTO;
-  elStatus(daftarFoto.length + " / " + MAKS_FOTO + " foto");
-}
-
-// ==================== AMBIL DATA AWAL DARI TAMPILATOR ====================
-function ambilDataAwal() {
-  if (!baseUrl) return;
-  elStatus("Mengambil data foto dari Tampilator...");
-  fetch(baseUrl + "/Get_Photo_Data")
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      daftarFoto = (data.photos || []).map(function (p) {
-        return {
-          id: p.id,
-          caption: p.caption || "",
-          posisiY: (typeof p.posisi_y === "number") ? p.posisi_y : 90,
-          previewUrl: null,
-          mainBlob: null,
-          thumbBlob: null
+    return new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () {
+            var w = img.width, h = img.height;
+            if (w > LEBAR_MAKS_UTAMA) {
+                h = Math.round(h * (LEBAR_MAKS_UTAMA / w));
+                w = LEBAR_MAKS_UTAMA;
+            }
+            var canvas = document.createElement("canvas");
+            canvas.width = w; canvas.height = h;
+            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+            canvas.toBlob(function (blob) { resolve(blob); }, "image/jpeg", KUALITAS_JPEG);
         };
-      });
-      render();
-    })
-    .catch(function () {
-      elStatus("Gagal terhubung ke Tampilator. Cek IP & pastikan 1 WiFi yang sama.");
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
     });
 }
 
-// ==================== SAMBUNG / IP ====================
-function sambungkan(ip) {
-  baseUrl = "http://" + ip + ":" + PORT;
-  ambilDataAwal();
+function buatThumbnail(file) {
+    return new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () {
+            var rasioTarget = THUMB_W / THUMB_H;
+            var rasioAsli = img.width / img.height;
+            var sx, sy, sw, sh;
+            if (rasioAsli > rasioTarget) {
+                sh = img.height; sw = sh * rasioTarget; sx = (img.width - sw) / 2; sy = 0;
+            } else {
+                sw = img.width; sh = sw / rasioTarget; sx = 0; sy = (img.height - sh) / 2;
+            }
+            var canvas = document.createElement("canvas");
+            canvas.width = THUMB_W; canvas.height = THUMB_H;
+            canvas.getContext("2d").drawImage(img, sx, sy, sw, sh, 0, 0, THUMB_W, THUMB_H);
+            canvas.toBlob(function (blob) { resolve(blob); }, "image/jpeg", KUALITAS_JPEG);
+        };
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+    });
 }
 
-document.getElementById("btnSambung").addEventListener("click", function () {
-  var ip = document.getElementById("inputIp").value.trim();
-  if (ip) sambungkan(ip);
-});
+// ==================== AMBIL DATA ====================
+function ambilData() {
+    setStatus("Mengambil data...", "biru");
+    fetch("http://" + serverIP + ":" + SERVER_PORT + "/Get_Photo_Data")
+        .then(function (r) { return r.text(); })
+        .then(function (t) {
+            var d = null;
+            try { d = JSON.parse(t); } catch (e) {}
+            if (d && d.photos) {
+                daftarFoto = d.photos.map(function (p) {
+                    return {
+                        id: p.id,
+                        caption: p.caption || "",
+                        posisiY: (typeof p.posisi_y === "number") ? p.posisi_y : 90,
+                        durasi: (typeof p.durasi === "number") ? p.durasi : null,
+                        previewUrl: null,
+                        mainBlob: null,
+                        thumbBlob: null,
+                        _cacheBust: Date.now()
+                    };
+                });
+                setStatus("Data diambil: " + daftarFoto.length + " foto", "hijau");
+                document.getElementById("btn-kirim").disabled = false;
+                document.getElementById("tombol-tambah").style.display = "flex";
+                document.getElementById("area-daftar").style.display = "block";
+                renderDaftarFoto();
+            } else {
+                setStatus("Gagal membaca data dari Tampilator", "merah");
+            }
+        })
+        .catch(function (err) {
+            setStatus("GAGAL AMBIL DATA: " + err.message, "merah");
+        });
+}
 
-function mulaiOtomatis() {
-  var ipOtomatis = "";
-  try {
-    if (window.AndroidBridge && window.AndroidBridge.getTvBoxIp) {
-      ipOtomatis = window.AndroidBridge.getTvBoxIp();
+// ==================== KIRIM DATA ====================
+function kirimData() {
+    if (!daftarFoto) { setStatus("Belum ada data", "merah"); return; }
+
+    document.getElementById("btn-kirim").disabled = true;
+    document.getElementById("btn-tambah-foto").disabled = true;
+
+    var yangPerluUpload = daftarFoto.filter(function (f) { return f.mainBlob || f.thumbBlob; });
+    var total = yangPerluUpload.length;
+
+    function uploadSatuPerSatu(i) {
+        if (i >= yangPerluUpload.length) { kirimMetadataPenutup(); return; }
+        var foto = yangPerluUpload[i];
+        setStatus("Mengunggah foto " + (i + 1) + " / " + total + "...", "biru");
+
+        fetch("http://" + serverIP + ":" + SERVER_PORT + "/Send_Photo?id=" + foto.id, { method: "POST", body: foto.mainBlob })
+            .then(function () {
+                return fetch("http://" + serverIP + ":" + SERVER_PORT + "/Send_Photo_Thumb?id=" + foto.id, { method: "POST", body: foto.thumbBlob });
+            })
+            .then(function () { uploadSatuPerSatu(i + 1); })
+            .catch(function (err) {
+                setStatus("GAGAL unggah foto ke-" + foto.id + ": " + err.message, "merah");
+                document.getElementById("btn-kirim").disabled = false;
+                document.getElementById("btn-tambah-foto").disabled = false;
+            });
     }
-  } catch (e) {}
 
-  if (ipOtomatis) {
-    document.getElementById("inputIp").value = ipOtomatis;
-    sambungkan(ipOtomatis);
-  } else {
-    elStatus("IP tidak terdeteksi otomatis - isi manual lalu tekan Sambung.");
-  }
+    function kirimMetadataPenutup() {
+        setStatus("Menyimpan urutan & caption...", "biru");
+        var payload = {
+            photos: daftarFoto.map(function (f) {
+                var o = { id: f.id, caption: f.caption || "", posisi_y: f.posisiY };
+                if (typeof f.durasi === "number") o.durasi = f.durasi;
+                return o;
+            })
+        };
+        fetch("http://" + serverIP + ":" + SERVER_PORT + "/Send_Photo_Meta", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(function (r) { return r.text(); })
+        .then(function () {
+            setStatus("Data BERHASIL dikirim! Editor di-reset.", "hijau");
+            daftarFoto = null;
+            document.getElementById("daftar-foto").innerHTML = "";
+            document.getElementById("btn-kirim").disabled = true;
+            document.getElementById("btn-tambah-foto").disabled = false;
+            document.getElementById("tombol-tambah").style.display = "none";
+            document.getElementById("area-daftar").style.display = "none";
+        })
+        .catch(function (err) {
+            setStatus("GAGAL KIRIM: " + err.message, "merah");
+            document.getElementById("btn-kirim").disabled = false;
+            document.getElementById("btn-tambah-foto").disabled = false;
+        });
+    }
+
+    uploadSatuPerSatu(0);
 }
 
-// ==================== TAMBAH / GANTI FOTO ====================
-document.getElementById("btnTambah").addEventListener("click", function () {
-  if (daftarFoto.length >= MAKS_FOTO) {
-    alert("Sudah mencapai maksimal " + MAKS_FOTO + " foto.");
-    return;
-  }
-  sedangEditId = null; // null berarti nambah baru
-  document.getElementById("inputFile").click();
-});
+// ==================== DAFTAR FOTO (LIST UTAMA) ====================
+function renderDaftarFoto() {
+    var c = document.getElementById("daftar-foto");
+    c.innerHTML = "";
 
-document.getElementById("inputFile").addEventListener("change", function (e) {
-  var file = e.target.files[0];
-  e.target.value = ""; // supaya bisa pilih file yang sama lagi nanti
-  if (!file) return;
-
-  elStatus("Memproses foto...");
-
-  Promise.all([resizeUtama(file), buatThumbnail(file)]).then(function (hasil) {
-    var mainBlob = hasil[0];
-    var thumbBlob = hasil[1];
-    var previewUrl = URL.createObjectURL(thumbBlob);
-
-    if (sedangEditId === null) {
-      var idBaru = idBerikutnya();
-      if (idBaru === null) {
-        alert("Sudah mencapai maksimal " + MAKS_FOTO + " foto.");
-        render();
+    if (daftarFoto.length === 0) {
+        c.innerHTML = '<div class="kosong">Belum ada foto. Tambah lewat tombol di atas.</div>';
         return;
-      }
-      daftarFoto.push({
-        id: idBaru,
-        caption: "",
-        posisiY: 90,
-        previewUrl: previewUrl,
-        mainBlob: mainBlob,
-        thumbBlob: thumbBlob
-      });
+    }
+
+    daftarFoto.forEach(function (foto, i) {
+        var div = document.createElement("div");
+        div.className = "item-card";
+
+        var thumb = document.createElement("div");
+        thumb.className = "thumb";
+        var src = thumbUrlUntuk(foto);
+        if (src) {
+            var img = document.createElement("img");
+            img.src = src;
+            img.onerror = function () {
+                thumb.innerHTML = '<div class="noFoto">Foto belum termuat</div>';
+            };
+            thumb.appendChild(img);
+        } else {
+            thumb.innerHTML = '<div class="noFoto">Belum ada foto</div>';
+        }
+        div.appendChild(thumb);
+
+        var info = document.createElement("div");
+        info.className = "info";
+
+        var nomor = document.createElement("div");
+        nomor.className = "nomor";
+        nomor.textContent = "Foto ke-" + foto.id + " (urutan " + (i + 1) + ")";
+        info.appendChild(nomor);
+
+        var cap = document.createElement("div");
+        cap.className = "caption-preview" + (foto.caption ? "" : " kosong");
+        cap.textContent = foto.caption || "(tanpa caption)";
+        info.appendChild(cap);
+
+        var sub = document.createElement("div");
+        sub.className = "subjudul";
+        sub.textContent = "Durasi: " + (foto.durasi || 8) + " detik";
+        info.appendChild(sub);
+
+        var aksi = document.createElement("div");
+        aksi.className = "item-aksi";
+
+        var btnNaik = document.createElement("button");
+        btnNaik.className = "btn-kecil btn-kecil-naik";
+        btnNaik.textContent = "\u2191";
+        btnNaik.disabled = (i === 0);
+        btnNaik.onclick = function () { pindahFoto(i, -1); };
+
+        var btnTurun = document.createElement("button");
+        btnTurun.className = "btn-kecil btn-kecil-turun";
+        btnTurun.textContent = "\u2193";
+        btnTurun.disabled = (i === daftarFoto.length - 1);
+        btnTurun.onclick = function () { pindahFoto(i, 1); };
+
+        var btnHapus = document.createElement("button");
+        btnHapus.className = "btn-kecil btn-kecil-hapus";
+        btnHapus.textContent = "\u2715";
+        btnHapus.onclick = function () { hapusFoto(i); };
+
+        var btnBuka = document.createElement("button");
+        btnBuka.className = "btn-kecil btn-kecil-buka";
+        btnBuka.textContent = "\uD83D\uDCDD EDIT";
+        btnBuka.onclick = function () { modeTambah = false; bukaFormFoto(i); };
+
+        aksi.appendChild(btnNaik);
+        aksi.appendChild(btnTurun);
+        aksi.appendChild(btnHapus);
+        aksi.appendChild(btnBuka);
+        info.appendChild(aksi);
+
+        div.appendChild(info);
+        c.appendChild(div);
+    });
+
+    document.getElementById("btn-tambah-foto").disabled = daftarFoto.length >= MAKS_FOTO;
+}
+
+function pindahFoto(i, arah) {
+    var j = i + arah;
+    if (j < 0 || j >= daftarFoto.length) return;
+    var tmp = daftarFoto[i]; daftarFoto[i] = daftarFoto[j]; daftarFoto[j] = tmp;
+    renderDaftarFoto();
+    setStatus("Urutan foto diubah", "hijau");
+}
+
+function hapusFoto(i) {
+    if (!confirm("Hapus foto ke-" + daftarFoto[i].id + "?")) return;
+    daftarFoto.splice(i, 1);
+    renderDaftarFoto();
+    setStatus("Foto dihapus", "hijau");
+}
+
+// ==================== TAMBAH FOTO BARU (langsung buka galeri) ====================
+function tambahFoto() {
+    if (daftarFoto.length >= MAKS_FOTO) {
+        alert("Sudah mencapai maksimal " + MAKS_FOTO + " foto.");
+        return;
+    }
+    editIndex = -1; // -1 = mode tambah baru, belum ada objeknya
+    document.getElementById("input-file").click();
+}
+
+document.getElementById("input-file").addEventListener("change", function (e) {
+    var file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setStatus("Memproses foto...", "biru");
+
+    Promise.all([resizeUtama(file), buatThumbnail(file)]).then(function (hasil) {
+        var mainBlob = hasil[0], thumbBlob = hasil[1];
+        var previewUrl = URL.createObjectURL(mainBlob); // preview modal pakai foto UTUH, bukan thumbnail crop
+
+        if (editIndex === -1) {
+            var idBaru = idBerikutnya();
+            if (idBaru === null) {
+                alert("Sudah mencapai maksimal " + MAKS_FOTO + " foto.");
+                return;
+            }
+            daftarFoto.push({
+                id: idBaru, caption: "", posisiY: 90, durasi: null,
+                previewUrl: previewUrl, mainBlob: mainBlob, thumbBlob: thumbBlob
+            });
+            modeTambah = true;
+            bukaFormFoto(daftarFoto.length - 1);
+        } else {
+            var foto = daftarFoto[editIndex];
+            foto.previewUrl = previewUrl;
+            foto.mainBlob = mainBlob;
+            foto.thumbBlob = thumbBlob;
+            bukaFormFoto(editIndex); // refresh modal yg sedang terbuka dgn preview baru
+        }
+        setStatus("Foto diproses", "hijau");
+    }).catch(function () {
+        alert("Gagal memproses foto ini. Coba pilih foto lain.");
+        setStatus("Gagal memproses foto", "merah");
+    });
+});
+
+// ==================== FORM EDIT FOTO (modal, dgn pratinjau caption live) ====================
+function bukaFormFoto(i) {
+    editIndex = i;
+    var foto = daftarFoto[i];
+
+    document.getElementById("form-judul").textContent =
+        modeTambah ? "TAMBAH FOTO" : "EDIT FOTO - urutan " + (i + 1);
+    document.getElementById("btn-tutup").textContent = modeTambah ? "BATAL" : "TUTUP";
+
+    document.getElementById("f-caption").value = foto.caption || "";
+    document.getElementById("f-posisi").value = foto.posisiY;
+    document.getElementById("f-durasi").value = (typeof foto.durasi === "number") ? foto.durasi : "";
+
+    perbaruiPreview();
+
+    document.getElementById("form-overlay").classList.add("aktif");
+}
+
+function perbaruiPreview() {
+    var foto = daftarFoto[editIndex];
+    var imgEl = document.getElementById("preview-img");
+    var kosongEl = document.getElementById("preview-kosong");
+    var capBox = document.getElementById("preview-caption-box");
+
+    var src = thumbUrlUntuk(foto); // pakai preview foto utuh (baru dipilih) atau thumbnail server (foto lama)
+    if (src) {
+        imgEl.src = src;
+        imgEl.style.display = "block";
+        kosongEl.style.display = "none";
+        capBox.style.display = "block";
     } else {
-      var foto = daftarFoto.find(function (f) { return f.id === sedangEditId; });
-      if (foto) {
-        foto.previewUrl = previewUrl;
-        foto.mainBlob = mainBlob;
-        foto.thumbBlob = thumbBlob;
-      }
+        imgEl.style.display = "none";
+        kosongEl.style.display = "block";
+        capBox.style.display = "none";
     }
-    render();
-  }).catch(function () {
-    alert("Gagal memproses foto ini. Coba pilih foto lain.");
-    elStatus("");
-  });
+
+    var caption = document.getElementById("f-caption").value;
+    var posisi = parseInt(document.getElementById("f-posisi").value, 10);
+    capBox.textContent = caption || "(tanpa caption)";
+    capBox.style.top = posisi + "%";
+}
+
+document.getElementById("f-caption").addEventListener("input", function () {
+    if (editIndex >= 0) { daftarFoto[editIndex].caption = this.value; perbaruiPreview(); }
+});
+document.getElementById("f-posisi").addEventListener("input", function () {
+    if (editIndex >= 0) { daftarFoto[editIndex].posisiY = parseInt(this.value, 10); perbaruiPreview(); }
+});
+document.getElementById("f-durasi").addEventListener("input", function () {
+    if (editIndex >= 0) {
+        var n = parseInt(this.value, 10);
+        daftarFoto[editIndex].durasi = (this.value === "" || isNaN(n)) ? null : n;
+    }
 });
 
-// ==================== SIMPAN (UPLOAD SEMUA) ====================
-document.getElementById("btnSimpan").addEventListener("click", function () {
-  if (!baseUrl) {
-    alert("Belum terhubung ke Tampilator.");
-    return;
-  }
-
-  var btnSimpan = document.getElementById("btnSimpan");
-  var btnTambah = document.getElementById("btnTambah");
-  btnSimpan.disabled = true;
-  btnTambah.disabled = true;
-
-  var yangPerluUpload = daftarFoto.filter(function (f) { return f.mainBlob || f.thumbBlob; });
-  var totalUpload = yangPerluUpload.length;
-  var selesai = 0;
-
-  function uploadSatuPerSatu(i) {
-    if (i >= yangPerluUpload.length) {
-      kirimMetadataPenutup();
-      return;
+function simpanForm() {
+    if (modeTambah) {
+        setStatus("Foto baru disimpan", "hijau");
+        modeTambah = false;
+    } else {
+        setStatus("Disimpan", "hijau");
     }
-    var foto = yangPerluUpload[i];
-    elStatus("Mengunggah foto " + (i + 1) + " / " + totalUpload + "...");
+    document.getElementById("form-overlay").classList.remove("aktif");
+    editIndex = -1;
+    renderDaftarFoto();
+}
 
-    fetch(baseUrl + "/Send_Photo?id=" + foto.id, { method: "POST", body: foto.mainBlob })
-      .then(function () {
-        return fetch(baseUrl + "/Send_Photo_Thumb?id=" + foto.id, { method: "POST", body: foto.thumbBlob });
-      })
-      .then(function () {
-        selesai++;
-        uploadSatuPerSatu(i + 1);
-      })
-      .catch(function () {
-        alert("Gagal mengunggah foto ke-" + foto.id + ". Coba lagi.");
-        btnSimpan.disabled = false;
-        btnTambah.disabled = false;
-        elStatus("Gagal mengunggah. Periksa koneksi WiFi.");
-      });
-  }
+function tutupForm() {
+    if (modeTambah && editIndex >= 0) {
+        daftarFoto.splice(editIndex, 1);
+        modeTambah = false;
+        setStatus("Penambahan dibatalkan", "merah");
+    }
+    document.getElementById("form-overlay").classList.remove("aktif");
+    editIndex = -1;
+    renderDaftarFoto();
+}
 
-  function kirimMetadataPenutup() {
-    elStatus("Menyimpan urutan & caption...");
-    var payload = {
-      photos: daftarFoto.map(function (f) {
-        return { id: f.id, caption: f.caption || "", posisi_y: f.posisiY };
-      })
-    };
-    fetch(baseUrl + "/Send_Photo_Meta", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-      .then(function () {
-        elStatus("Tersimpan.");
-        btnSimpan.disabled = false;
-        btnTambah.disabled = daftarFoto.length >= MAKS_FOTO;
-        // bersihkan blob pending karena sudah terupload
-        daftarFoto.forEach(function (f) { f.mainBlob = null; f.thumbBlob = null; });
-      })
-      .catch(function () {
-        alert("Gagal menyimpan data akhir ke Tampilator.");
-        btnSimpan.disabled = false;
-        btnTambah.disabled = false;
-        elStatus("Gagal menyimpan.");
-      });
-  }
-
-  uploadSatuPerSatu(0);
-});
-
-// ==================== MULAI ====================
-mulaiOtomatis();
-render();
+// ==================== INIT ====================
+deteksiIP();
+setTimeout(deteksiIP, 1000);
 </script>
 
 </body>
